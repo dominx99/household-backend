@@ -14,22 +14,22 @@ upd:
 	@docker-compose up -d --build
 
 fix:
-	@docker-compose exec php php vendor/bin/php-cs-fixer fix src
-	@docker-compose exec php php vendor/bin/php-cs-fixer fix framework
-	@docker-compose exec php php vendor/bin/php-cs-fixer fix tests
+	@docker-compose exec $(php_service) php vendor/bin/php-cs-fixer fix src
+	@docker-compose exec $(php_service) php vendor/bin/php-cs-fixer fix framework
+	@docker-compose exec $(php_service) php vendor/bin/php-cs-fixer fix tests
 
-cache:
-	@docker-compose exec php php bin/console cache:clear
+clear:
+	@docker-compose exec $(php_service) php bin/console cache:clear
 
 tt:
-	@docker-compose exec php php bin/phpunit
+	@docker-compose exec $(php_service) php bin/phpunit
 
 ttc:
 	@docker-compose -f $(compose_file) exec $(php_service) sh -c "php bin/phpunit --coverage-html .coverage $(CMD)"
 	@brave ".coverage/index.html"
 
 migrate:
-	@docker-compose exec php php bin/console doctrine:migrations:migrate
+	@docker-compose exec $(php_service) php bin/console doctrine:migrations:migrate
 
 diff:
-	@docker-compose exec php php bin/console doctrine:migrations:diff
+	@docker-compose exec $(php_service) php bin/console doctrine:migrations:diff
