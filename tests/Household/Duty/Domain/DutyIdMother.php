@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Duty\Domain;
+namespace App\Tests\Household\Duty\Domain;
 
 use App\Household\Duty\Domain\DutyId;
 use App\Tests\Shared\Domain\UuidMother;
