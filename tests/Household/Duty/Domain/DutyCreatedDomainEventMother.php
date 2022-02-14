@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Household\Duty\Domain;
 
 use App\Household\Duty\Domain\Duty;
+use App\Household\Duty\Domain\DutyCreatedDomainEvent;
 use App\Household\Duty\Domain\DutyId;
 use App\Household\Duty\Domain\DutyName;
 

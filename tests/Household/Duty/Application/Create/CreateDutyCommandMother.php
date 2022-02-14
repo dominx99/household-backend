@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Household\Duty\Application\Create;
 
+use App\Household\Duty\Application\Create\CreateDutyCommand;
 use App\Household\Duty\Domain\DutyId;
 use App\Household\Duty\Domain\DutyName;
 use App\Tests\Household\Duty\Domain\DutyIdMother;

@@ -17,7 +17,7 @@ final class CreateDutyCommandHandlerTest extends DutyModuleUnitTestCase
     {
         parent::setUp();
 
-        $this->handler = new CreateDutyCommandHandler(DutyCreator($this->repository(), $this->eventBus()));
+        $this->handler = new CreateDutyCommandHandler(new DutyCreator($this->repository(), $this->eventBus()));
     }
 
     /** @test */

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Shared\Infrastructure\PhpUnit;
 
+use App\Shared\Domain\Bus\Command\Command;
 use App\Shared\Domain\Bus\Event\DomainEvent;
+use App\Shared\Domain\Bus\Event\EventBus;
 use App\Tests\Shared\Domain\TestUtils;
 use Mockery;
 use Mockery\MockInterface;
