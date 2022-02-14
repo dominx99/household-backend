@@ -12,4 +12,14 @@ final class Duty extends AggregateRoot
         private DutyId $id,
         private DutyName $name,
     ) {}
+
+    public function id(): DutyId
+    {
+        return $this->id;
+    }
+
+    public function name(): DutyName
+    {
+        return $this->name;
+    }
 }

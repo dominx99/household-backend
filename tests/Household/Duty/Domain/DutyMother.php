@@ -19,4 +19,12 @@ final class DutyMother
             $name ?? DutyNameMother::create(),
         );
     }
+
+    public static function fromRequest(CreateDutyCommand $request): Duty
+    {
+        return self::create(
+            DutyIdMother::create($request->id()),
+            DutyNameMother::create($request->name()),
+        );
+    }
 }
