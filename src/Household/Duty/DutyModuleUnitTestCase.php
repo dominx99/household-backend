@@ -18,12 +18,13 @@ abstract class DutyModuleUnitTestCase extends UnitTestCase
         return $this->repository = $this->repository ?? $this->mock(DutyRepository::class);
     }
 
-    protected function shouldSave(Duty $course): void
+    protected function shouldSave(Duty $duty): void
     {
         $this->repository()
             ->shouldReceive('save')
-            ->with($this->similarTo($course))
+            ->with($this->similarTo($duty))
             ->once()
-            ->andReturnNull();
+            ->andReturnNull()
+        ;
     }
 }

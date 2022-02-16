@@ -7,6 +7,9 @@
         "php": ">=8.0.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "doctrine/dbal": "^3.3",
+        "doctrine/orm": "^2.11",
+        "lambdish/phunctional": "^2.1",
         "ramsey/uuid": "^4.2",
         "symfony/console": "6.0.*",
         "symfony/dotenv": "6.0.*",
@@ -67,8 +70,6 @@
         }
     },
     "require-dev": {
-        "ext-xdebug": "*",
-
         "phpunit/phpunit": "^9.5",
         "symfony/browser-kit": "6.0.*",
         "symfony/css-selector": "6.0.*",

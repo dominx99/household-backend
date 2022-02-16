@@ -4,6 +4,12 @@ declare(strict_types=1);
 
 namespace App\Tests\Shared\Infrastructure\PhpUnit\Constraint;
 
+use App\Tests\Shared\Infrastructure\PhpUnit\Comparator\AggregateRootArraySimilarComparator;
+use App\Tests\Shared\Infrastructure\PhpUnit\Comparator\AggregateRootSimilarComparator;
+use App\Tests\Shared\Infrastructure\PhpUnit\Comparator\DateTimeSimilarComparator;
+use App\Tests\Shared\Infrastructure\PhpUnit\Comparator\DateTimeStringSimilarComparator;
+use App\Tests\Shared\Infrastructure\PhpUnit\Comparator\DomainEventArraySimilarComparator;
+use App\Tests\Shared\Infrastructure\PhpUnit\Comparator\DomainEventSimilarComparator;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\ExpectationFailedException;
 use SebastianBergmann\Comparator\ComparisonFailure;
@@ -24,12 +30,12 @@ final class ConstraintIsSimilar extends Constraint
         $isValid           = true;
         $comparatorFactory = new Factory();
 
-        /* $comparatorFactory->register(new AggregateRootArraySimilarComparator()); */
-        /* $comparatorFactory->register(new AggregateRootSimilarComparator()); */
-        /* $comparatorFactory->register(new DomainEventArraySimilarComparator()); */
-        /* $comparatorFactory->register(new DomainEventSimilarComparator()); */
-        /* $comparatorFactory->register(new DateTimeSimilarComparator()); */
-        /* $comparatorFactory->register(new DateTimeStringSimilarComparator()); */
+        $comparatorFactory->register(new AggregateRootArraySimilarComparator());
+        $comparatorFactory->register(new AggregateRootSimilarComparator());
+        $comparatorFactory->register(new DomainEventArraySimilarComparator());
+        $comparatorFactory->register(new DomainEventSimilarComparator());
+        $comparatorFactory->register(new DateTimeSimilarComparator());
+        $comparatorFactory->register(new DateTimeStringSimilarComparator());
 
         try {
             $comparator = $comparatorFactory->getComparatorFor($other, $this->value);

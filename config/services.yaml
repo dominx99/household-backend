@@ -4,3 +4,9 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
+
+
+    App\:
+      resource: '../src'
+
+    App\Household\Duty\Domain\DutyRepository: '@App\Household\Duty\Infrastructure\Persistence\MySqlDutyRepository'
