@@ -32,21 +32,14 @@ final class DateTimeStringSimilarComparator extends ObjectComparator
         array &$processed = []
     ): void {
         $expectedDate = new DateTimeImmutable($expected);
-        $actualDate   = new DateTimeImmutable($actual);
+        $actualDate = new DateTimeImmutable($actual);
 
-        $normalizedDelta   = $delta === 0.0 ? 10 : $delta;
+        $normalizedDelta = 0.0 === $delta ? 10 : $delta;
         $intervalWithDelta = new DateInterval(sprintf('PT%sS', abs($normalizedDelta)));
 
         if ($actualDate < $expectedDate->sub($intervalWithDelta)
             || $actualDate > $expectedDate->add($intervalWithDelta)) {
-            throw new ComparisonFailure(
-                $expectedDate,
-                $actualDate,
-                $this->dateTimeToString($expectedDate),
-                $this->dateTimeToString($actualDate),
-                false,
-                'Failed asserting that two DateTime strings are equal.'
-            );
+            throw new ComparisonFailure($expectedDate, $actualDate, $this->dateTimeToString($expectedDate), $this->dateTimeToString($actualDate), false, 'Failed asserting that two DateTime strings are equal.');
         }
     }
 

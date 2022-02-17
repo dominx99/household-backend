@@ -9,9 +9,9 @@ use App\Shared\Domain\Bus\Event\DomainEvent;
 use App\Shared\Domain\Bus\Event\EventBus;
 use App\Tests\Shared\Domain\TestUtils;
 use Mockery;
-use Mockery\MockInterface;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
 use Mockery\Matcher\MatcherAbstract;
+use Mockery\MockInterface;
 
 abstract class UnitTestCase extends MockeryTestCase
 {

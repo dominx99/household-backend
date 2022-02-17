@@ -1,6 +1,8 @@
 compose_file := "docker-compose.yml"
-php_service := "php_duties"
+duty_php_service := "php_duties"
 current-dir := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+duty-bin-location := "./apps/duty/backend/bin"
+duty-console-location := "./apps/duty/backend/bin/console"
 
 # 🐳 Docker Compose
 .PHONY: start
@@ -19,10 +21,13 @@ build: deps start
 deps: composer-install
 
 .PHONY: composer
-composer composer-install composer-update composer-require composer-require-module: composer-env-file
+composer dump composer-install composer-update composer-require composer-require-module: composer-env-file
 	@docker run --rm $(INTERACTIVE) --volume $(current-dir):/app --user $(id -u):$(id -g) \
 		composer:2 $(CMD) \
 			--no-ansi
+
+.PHONY: dump
+dump: CMD=dump-autoload
 
 .PHONY: composer-install
 composer-install: CMD=install
@@ -55,22 +60,26 @@ composer-env-file:
 	@if [ ! -f .env.local ]; then echo '' > .env.local; fi
 
 fix:
-	@docker-compose exec $(php_service) php vendor/bin/php-cs-fixer fix src
-	@docker-compose exec $(php_service) php vendor/bin/php-cs-fixer fix framework
-	@docker-compose exec $(php_service) php vendor/bin/php-cs-fixer fix tests
+	@docker-compose exec $(duty_php_service) php vendor/bin/php-cs-fixer fix src
+	@docker-compose exec $(duty_php_service) php vendor/bin/php-cs-fixer fix tests
 
 clear:
-	@docker-compose exec $(php_service) php bin/console cache:clear
+	@docker-compose exec $(duty_php_service) php $(duty-console-location) cache:clear
 
-tt:
-	@docker-compose exec $(php_service) php bin/phpunit
+.PHONY: test
+test: composer-env-file
+	docker-compose exec $(duty_php_service) php $(duty-bin-location)/phpunit
 
-ttc:
-	@docker-compose -f $(compose_file) exec $(php_service) sh -c "php bin/phpunit --coverage-html .coverage $(CMD)"
+test-coverage:
+	@docker-compose -f $(compose_file) exec $(duty_php_service) sh -c "php bin/phpunit --coverage-html .coverage $(CMD)"
 	@brave ".coverage/index.html"
 
 migrate:
-	@docker-compose exec $(php_service) php bin/console doctrine:migrations:migrate
+	@docker-compose exec $(duty_php_service) php $(duty-console-location) doctrine:migrations:migrate
 
 diff:
-	@docker-compose exec $(php_service) php bin/console doctrine:migrations:diff
+	@docker-compose exec $(duty_php_service) php $(duty-console-location) doctrine:migrations:diff
+
+.PHONY: static-analysis
+static-analysis: composer-env-file
+	docker-compose exec $(duty_php_service) ./vendor/bin/psalm $(CMD)

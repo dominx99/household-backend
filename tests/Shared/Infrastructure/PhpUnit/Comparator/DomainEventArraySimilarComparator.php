@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace App\Tests\Shared\Infrastructure\PhpUnit\Comparator;
 
-use function Lambdish\Phunctional\all;
-use function Lambdish\Phunctional\any;
-use SebastianBergmann\Comparator\Comparator;
 use App\Shared\Domain\Bus\Event\DomainEvent;
 use App\Tests\Shared\Domain\TestUtils;
-
+use function Lambdish\Phunctional\all;
+use function Lambdish\Phunctional\any;
 use function Lambdish\Phunctional\instance_of;
+use SebastianBergmann\Comparator\Comparator;
 use SebastianBergmann\Comparator\ComparisonFailure;
 
 final class DomainEventArraySimilarComparator extends Comparator
@@ -26,21 +25,14 @@ final class DomainEventArraySimilarComparator extends Comparator
     public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false): void
     {
         if (!$this->contains($expected, $actual) || count($expected) !== count($actual)) {
-            throw new ComparisonFailure(
-                $expected,
-                $actual,
-                $this->exporter->export($expected),
-                $this->exporter->export($actual),
-                false,
-                'Failed asserting the collection of Events contains all the expected elements.'
-            );
+            throw new ComparisonFailure($expected, $actual, $this->exporter->export($expected), $this->exporter->export($actual), false, 'Failed asserting the collection of Events contains all the expected elements.');
         }
     }
 
     private function contains(array $expectedArray, array $actualArray): bool
     {
-        $exists = static fn(DomainEvent $expected) => any(
-            static fn(DomainEvent $actual) => TestUtils::isSimilar($expected, $actual),
+        $exists = static fn (DomainEvent $expected) => any(
+            static fn (DomainEvent $actual) => TestUtils::isSimilar($expected, $actual),
             $actualArray
         );
 

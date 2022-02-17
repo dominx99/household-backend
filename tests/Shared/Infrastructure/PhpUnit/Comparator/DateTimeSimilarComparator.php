@@ -25,21 +25,14 @@ final class DateTimeSimilarComparator extends ObjectComparator
         $ignoreCase = false,
         array &$processed = []
     ): void {
-        $normalizedDelta   = $delta === 0.0 ? 10 : $delta;
+        $normalizedDelta = 0.0 === $delta ? 10 : $delta;
         $intervalWithDelta = new DateInterval(sprintf('PT%sS', abs($normalizedDelta)));
 
         $expectedLower = clone $expected;
         $expectedUpper = clone $expected;
 
         if ($actual < $expectedLower->sub($intervalWithDelta) || $actual > $expectedUpper->add($intervalWithDelta)) {
-            throw new ComparisonFailure(
-                $expected,
-                $actual,
-                $this->dateTimeToString($expected),
-                $this->dateTimeToString($actual),
-                false,
-                'Failed asserting that two DateTime objects are equal.'
-            );
+            throw new ComparisonFailure($expected, $actual, $this->dateTimeToString($expected), $this->dateTimeToString($actual), false, 'Failed asserting that two DateTime objects are equal.');
         }
     }
 

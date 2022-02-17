@@ -32,6 +32,8 @@
     },
     "autoload": {
         "psr-4": {
+            "Apps\\Duty\\Backend\\": "apps/duty/backend/src",
+
             "App\\": ["src/", "framework/"]
         }
     },
@@ -48,18 +50,6 @@
         "symfony/polyfill-php74": "*",
         "symfony/polyfill-php80": "*"
     },
-    "scripts": {
-        "auto-scripts": {
-            "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
-        },
-        "post-install-cmd": [
-            "@auto-scripts"
-        ],
-        "post-update-cmd": [
-            "@auto-scripts"
-        ]
-    },
     "conflict": {
         "symfony/symfony": "*"
     },
@@ -70,11 +60,13 @@
         }
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.6",
+        "fzaninotto/faker": "^1.5",
+        "mockery/mockery": "^1.5",
         "phpunit/phpunit": "^9.5",
         "symfony/browser-kit": "6.0.*",
         "symfony/css-selector": "6.0.*",
         "symfony/phpunit-bridge": "^6.0",
-        "fzaninotto/faker": "^1.5",
-        "mockery/mockery": "^1.5"
+        "vimeo/psalm": "^4.20"
     }
 }

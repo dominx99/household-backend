@@ -11,7 +11,8 @@ final class Duty extends AggregateRoot
     public function __construct(
         private DutyId $id,
         private DutyName $name,
-    ) {}
+    ) {
+    }
 
     public static function create(DutyId $id, DutyName $name): self
     {

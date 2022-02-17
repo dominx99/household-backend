@@ -1,3 +1,0 @@
-kernel:
-    resource: ../framework/Kernel.php
-    type: annotation

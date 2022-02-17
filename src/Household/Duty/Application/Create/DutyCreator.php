@@ -12,10 +12,11 @@ use App\Shared\Domain\Bus\Event\EventBus;
 
 final class DutyCreator
 {
-    public function __construct (
+    public function __construct(
         private DutyRepository $repository,
         private EventBus $eventBus,
-    ) {}
+    ) {
+    }
 
     public function __invoke(DutyId $id, DutyName $name): void
     {

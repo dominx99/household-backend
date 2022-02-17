@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Shared\Domain\ValueObject;
 
 use InvalidArgumentException;
-use Stringable;
 use Ramsey\Uuid\Uuid as RamseyUuid;
+use Stringable;
 
 class Uuid implements Stringable
 {

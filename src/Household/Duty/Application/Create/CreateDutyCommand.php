@@ -8,10 +8,11 @@ use App\Shared\Domain\Bus\Command\Command;
 
 final class CreateDutyCommand implements Command
 {
-    public function __construct (
+    public function __construct(
         private string $id,
         private string $name,
-    ) {}
+    ) {
+    }
 
     public function id(): string
     {

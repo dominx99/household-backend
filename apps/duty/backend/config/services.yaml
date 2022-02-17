@@ -7,6 +7,6 @@ services:
 
 
     App\:
-      resource: '../src'
+      resource: '../../../../src'
 
     App\Household\Duty\Domain\DutyRepository: '@App\Household\Duty\Infrastructure\Persistence\MySqlDutyRepository'

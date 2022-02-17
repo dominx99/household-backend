@@ -27,7 +27,7 @@ final class ConstraintIsSimilar extends Constraint
             return true;
         }
 
-        $isValid           = true;
+        $isValid = true;
         $comparatorFactory = new Factory();
 
         $comparatorFactory->register(new AggregateRootArraySimilarComparator());
@@ -43,10 +43,7 @@ final class ConstraintIsSimilar extends Constraint
             $comparator->assertEquals($this->value, $other, $this->delta);
         } catch (ComparisonFailure $f) {
             if (!$returnResult) {
-                throw new ExpectationFailedException(
-                    trim($description . "\n" . $f->getMessage()),
-                    $f
-                );
+                throw new ExpectationFailedException(trim($description . "\n" . $f->getMessage()), $f);
             }
 
             $isValid = false;
@@ -70,7 +67,7 @@ final class ConstraintIsSimilar extends Constraint
             );
         }
 
-        if ($this->delta !== 0) {
+        if (0 !== $this->delta) {
             $delta = sprintf(
                 ' with delta <%F>',
                 $this->delta
