@@ -1,3 +1,0 @@
-kernel:
-    resource: ../src/DutyBackendKernel.php
-    type: annotation

@@ -1,14 +1,11 @@
 <?php
 
-namespace Apps\Duty\Backend;
+namespace Apps\Household\Backend;
 
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
-use Symfony\Component\Config\Loader\LoaderInterface;
-use Symfony\Component\Config\Resource\FileResource;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 
-class DutyBackendKernel extends BaseKernel
+class HouseholdBackendKernel extends BaseKernel
 {
     use MicroKernelTrait;
 

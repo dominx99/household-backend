@@ -1,8 +1,8 @@
 compose_file := "docker-compose.yml"
 duty_php_service := "php_duties"
 current-dir := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
-duty-bin-location := "./apps/duty/backend/bin"
-duty-console-location := "./apps/duty/backend/bin/console"
+duty-bin-location := "./apps/household/backend/bin"
+duty-console-location := "./apps/household/backend/bin/console"
 
 # 🐳 Docker Compose
 .PHONY: up
@@ -60,6 +60,7 @@ composer-env-file:
 	@if [ ! -f .env.local ]; then echo '' > .env.local; fi
 
 fix:
+	@docker-compose exec $(duty_php_service) php vendor/bin/php-cs-fixer fix apps/household/backend/src
 	@docker-compose exec $(duty_php_service) php vendor/bin/php-cs-fixer fix src
 	@docker-compose exec $(duty_php_service) php vendor/bin/php-cs-fixer fix tests
 

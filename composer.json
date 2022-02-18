@@ -32,7 +32,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Apps\\Duty\\Backend\\": "apps/duty/backend/src",
+            "Apps\\Household\\Backend\\": "apps/household/backend/src",
 
             "App\\": ["src/", "framework/"]
         }
