@@ -1,6 +1,6 @@
 version: "3"
 services:
-  php_duties:
+  php_household:
     build:
       context: ./
       dockerfile: ./docker/php/Dockerfile
@@ -21,11 +21,11 @@ services:
       - .:/application
       - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
     depends_on:
-      - php_duties
+      - php_household
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.duties.rule=Host(`duties.local`)"
-      - "traefik.http.routers.duties.entrypoints=web"
+      - "traefik.http.routers.household.rule=Host(`household.local`)"
+      - "traefik.http.routers.household.entrypoints=web"
       - "traefik.docker.network=proxy"
     networks:
       proxy:
@@ -37,7 +37,7 @@ services:
       - ./../data/mysql:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=duties
+      - MYSQL_DATABASE=household
       - MYSQL_HOST=127.0.0.1
     networks:
       proxy:

@@ -1,5 +1,5 @@
 compose_file := "docker-compose.yml"
-duty_php_service := "php_duties"
+household_php_service := "php_household"
 current-dir := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 duty-bin-location := "./apps/household/backend/bin"
 duty-console-location := "./apps/household/backend/bin/console"
@@ -60,27 +60,27 @@ composer-env-file:
 	@if [ ! -f .env.local ]; then echo '' > .env.local; fi
 
 fix:
-	@docker-compose exec $(duty_php_service) php vendor/bin/php-cs-fixer fix apps/household/backend/src
-	@docker-compose exec $(duty_php_service) php vendor/bin/php-cs-fixer fix src
-	@docker-compose exec $(duty_php_service) php vendor/bin/php-cs-fixer fix tests
+	@docker-compose exec $(household_php_service) php vendor/bin/php-cs-fixer fix apps/household/backend/src
+	@docker-compose exec $(household_php_service) php vendor/bin/php-cs-fixer fix src
+	@docker-compose exec $(household_php_service) php vendor/bin/php-cs-fixer fix tests
 
 clear:
-	@docker-compose exec $(duty_php_service) php $(duty-console-location) cache:clear
+	@docker-compose exec $(household_php_service) php $(duty-console-location) cache:clear
 
 .PHONY: test
 test: composer-env-file
-	docker-compose exec $(duty_php_service) php $(duty-bin-location)/phpunit
+	docker-compose exec $(household_php_service) php $(duty-bin-location)/phpunit
 
 test-coverage:
-	@docker-compose -f $(compose_file) exec $(duty_php_service) sh -c "php bin/phpunit --coverage-html .coverage $(CMD)"
+	@docker-compose -f $(compose_file) exec $(household_php_service) sh -c "php bin/phpunit --coverage-html .coverage $(CMD)"
 	@brave ".coverage/index.html"
 
 migrate:
-	@docker-compose exec $(duty_php_service) php $(duty-console-location) doctrine:migrations:migrate
+	@docker-compose exec $(household_php_service) php $(duty-console-location) doctrine:migrations:migrate
 
 diff:
-	@docker-compose exec $(duty_php_service) php $(duty-console-location) doctrine:migrations:diff
+	@docker-compose exec $(household_php_service) php $(duty-console-location) doctrine:migrations:diff
 
 .PHONY: static-analysis
 static-analysis: composer-env-file
-	docker-compose exec $(duty_php_service) ./vendor/bin/psalm $(CMD)
+	docker-compose exec $(household_php_service) ./vendor/bin/psalm $(CMD)
