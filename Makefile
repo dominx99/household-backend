@@ -5,8 +5,8 @@ duty-bin-location := "./apps/duty/backend/bin"
 duty-console-location := "./apps/duty/backend/bin/console"
 
 # 🐳 Docker Compose
-.PHONY: start
-start: CMD=up --build -d
+.PHONY: up
+up: CMD=up --build -d
 
 .PHONY: stop
 stop: CMD=stop
@@ -15,7 +15,7 @@ stop: CMD=stop
 destroy: CMD=down
 
 .PHONY: build
-build: deps start
+build: deps up
 
 .PHONY: deps
 deps: composer-install
@@ -46,14 +46,14 @@ composer-require-module: INTERACTIVE=-ti --interactive
 # Usage: `make doco CMD="ps --services"`
 # Usage: `make doco CMD="build --parallel --pull --force-rm --no-cache"`
 .PHONY: doco
-doco start stop destroy: composer-env-file
+doco up stop destroy: composer-env-file
 	@docker-compose $(CMD)
 
 .PHONY: rebuild
 rebuild: composer-env-file
 	docker-compose build --pull --force-rm --no-cache
 	make deps
-	make start
+	make up
 
 # 🐘 Composer
 composer-env-file:
