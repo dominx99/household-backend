@@ -15,6 +15,7 @@ use Symfony\Component\Validator\Validation;
 abstract class ApiController
 {
     public function __construct(
+        private CommandBus $commandBus,
         ApiExceptionsHttpStatusCodeMapping $exceptionHandler
     ) {
         each(

@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace App\Shared\Infrastructure\Symfony;
 
+use Throwable;
 use App\Shared\Domain\Utils;
-use App\Shared\Domain\Validation\ValidationFailedError;
+use App\Shared\Domain\DomainError;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
-use Throwable;
+use App\Shared\Domain\Validation\ValidationFailedError;
 
 final class ApiExceptionListener
 {

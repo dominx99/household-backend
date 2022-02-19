@@ -72,6 +72,12 @@ clear:
 test: composer-env-file
 	docker-compose exec $(household_php_service) php $(duty-bin-location)/phpunit
 
+test-household th: composer-env-file
+	docker-compose exec $(household_php_service) php $(duty-bin-location)/phpunit --testsuite household
+
+test-shared ts: composer-env-file
+	docker-compose exec $(household_php_service) php $(duty-bin-location)/phpunit --testsuite shared
+
 test-coverage:
 	@docker-compose -f $(compose_file) exec $(household_php_service) sh -c "php bin/phpunit --coverage-html .coverage $(CMD)"
 	@brave ".coverage/index.html"
