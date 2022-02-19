@@ -21,7 +21,7 @@ final class CreateDutyCommandHandlerTest extends DutyModuleUnitTestCase
     }
 
     /** @test */
-    public function it_shout_create_valid_course(): void
+    public function it_should_create_valid_duty(): void
     {
         $command = CreateDutyCommandMother::create();
 

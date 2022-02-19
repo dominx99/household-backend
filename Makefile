@@ -65,7 +65,8 @@ fix:
 	@docker-compose exec $(household_php_service) php vendor/bin/php-cs-fixer fix tests
 
 clear:
-	@docker-compose exec $(household_php_service) php $(duty-console-location) cache:clear
+	@rm -rf ./apps/*/*/var
+	@docker-compose exec $(household_php_service) php $(duty-console-location) cache:warmup
 
 .PHONY: test
 test: composer-env-file

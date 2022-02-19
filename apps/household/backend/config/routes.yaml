@@ -1,3 +1,7 @@
 kernel:
-    resource: ../src/HouseholdBackendKernel.php
-    type: annotation
+  resource: ../src/HouseholdBackendKernel.php
+  type: annotation
+
+controllers:
+  resource: ../src/Controller/
+  type: annotation
