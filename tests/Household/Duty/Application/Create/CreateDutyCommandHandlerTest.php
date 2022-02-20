@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Household\Duty\Application\Create;
 
-use App\Household\Duty\DutyModuleUnitTestCase;
 use App\Tests\Household\Duty\Application\Create\CreateDutyCommandMother;
 use App\Tests\Household\Duty\Domain\DutyCreatedDomainEventMother;
 use App\Tests\Household\Duty\Domain\DutyMother;
+use App\Tests\Household\Duty\DutyModuleUnitTestCase;
 
 final class CreateDutyCommandHandlerTest extends DutyModuleUnitTestCase
 {

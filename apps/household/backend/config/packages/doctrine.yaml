@@ -7,9 +7,6 @@ doctrine:
     host: '%env(HOUSEHOLD_DATABASE_HOST)%'
     port: '%env(HOUSEHOLD_DATABASE_PORT)%'
 
-    types:
-      duty_id: App\Household\Duty\Infrastructure\Persistence\Doctrine\DutyIdType
-
   orm:
     auto_generate_proxy_classes: true
     auto_mapping: true

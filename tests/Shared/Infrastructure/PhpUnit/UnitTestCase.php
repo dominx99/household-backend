@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Infrastructure\PhpUnit;
+namespace App\Tests\Shared\Infrastructure\PhpUnit;
 
 use App\Shared\Domain\Bus\Command\Command;
 use App\Shared\Domain\Bus\Event\DomainEvent;

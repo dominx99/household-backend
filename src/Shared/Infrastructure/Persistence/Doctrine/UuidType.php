@@ -24,14 +24,14 @@ abstract class UuidType extends StringType implements DoctrineCustomType
         return self::customTypeName();
     }
 
-    public function convertToPHPValue($value, AbstractPlatform $platform)
+    public function convertToPHPValue($value, AbstractPlatform $platform): mixed
     {
         $className = $this->typeClassName();
 
         return new $className($value);
     }
 
-    public function convertToDatabaseValue($value, AbstractPlatform $platform)
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
     {
         /* @var \App\Shared\Domain\ValueObject\Uuid $value */
         return $value->value();

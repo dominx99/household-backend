@@ -3,6 +3,9 @@
 /apps/*/*/build/
 !/apps/*/*/build/supervisor/.gitkeep
 
+/build/
+/.coverage/
+
 /.env.local
 /.env.local.php
 /.env.*.local

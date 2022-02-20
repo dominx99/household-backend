@@ -7,7 +7,7 @@ namespace App\Tests\Shared\Infrastructure\Bus\Command;
 use App\Shared\Domain\Bus\Command\Command;
 use App\Shared\Domain\Bus\Command\CommandNotRegisteredError;
 use App\Shared\Infrastructure\Bus\Command\InMemorySymfonyCommandBus;
-use App\Shared\Infrastructure\PhpUnit\UnitTestCase;
+use App\Tests\Shared\Infrastructure\PhpUnit\UnitTestCase;
 use Mockery\MockInterface;
 use RuntimeException;
 

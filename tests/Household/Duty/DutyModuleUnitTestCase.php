@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Household\Duty;
+namespace App\Tests\Household\Duty;
 
 use App\Household\Duty\Domain\Duty;
 use App\Household\Duty\Domain\DutyRepository;
-use App\Shared\Infrastructure\PhpUnit\UnitTestCase;
+use App\Tests\Shared\Infrastructure\PhpUnit\UnitTestCase;
 use Mockery\MockInterface;
 
 abstract class DutyModuleUnitTestCase extends UnitTestCase

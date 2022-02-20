@@ -1,8 +1,8 @@
 compose_file := "docker-compose.yml"
-household_php_service := "php_household"
+household-php-service := "php_household"
 current-dir := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
-duty-bin-location := "./apps/household/backend/bin"
-duty-console-location := "./apps/household/backend/bin/console"
+household-bin-location := "./apps/household/backend/bin"
+household-console-location := "./apps/household/backend/bin/console"
 
 # 🐳 Docker Compose
 .PHONY: up
@@ -60,34 +60,40 @@ composer-env-file:
 	@if [ ! -f .env.local ]; then echo '' > .env.local; fi
 
 fix:
-	@docker-compose exec $(household_php_service) php vendor/bin/php-cs-fixer fix apps/household/backend/src
-	@docker-compose exec $(household_php_service) php vendor/bin/php-cs-fixer fix src
-	@docker-compose exec $(household_php_service) php vendor/bin/php-cs-fixer fix tests
+	@docker-compose exec $(household-php-service) php vendor/bin/php-cs-fixer fix apps/household/backend/src
+	@docker-compose exec $(household-php-service) php vendor/bin/php-cs-fixer fix src
+	@docker-compose exec $(household-php-service) php vendor/bin/php-cs-fixer fix tests
 
 clear:
-	@rm -rf ./apps/*/*/var
-	@docker-compose exec $(household_php_service) php $(duty-console-location) cache:warmup
+	@sudo rm -rf ./apps/*/*/var
+	@docker-compose exec $(household-php-service) php $(household-console-location) cache:warmup
 
 .PHONY: test
 test: composer-env-file
-	docker-compose exec $(household_php_service) php $(duty-bin-location)/phpunit
+	docker-compose exec $(household-php-service) php $(household-bin-location)/phpunit
 
 test-household th: composer-env-file
-	docker-compose exec $(household_php_service) php $(duty-bin-location)/phpunit --testsuite household
+	docker-compose exec $(household-php-service) php $(household-bin-location)/phpunit --testsuite household
 
 test-shared ts: composer-env-file
-	docker-compose exec $(household_php_service) php $(duty-bin-location)/phpunit --testsuite shared
+	docker-compose exec $(household-php-service) php $(household-bin-location)/phpunit --testsuite shared
 
-test-coverage:
-	@docker-compose -f $(compose_file) exec $(household_php_service) sh -c "php bin/phpunit --coverage-html .coverage $(CMD)"
+.PHONY: run-tests
+run-tests: composer-env-file
+	mkdir -p build/test_results/phpunit
+	./vendor/bin/phpunit --exclude-group='disabled' --log-junit build/test_results/phpunit/junit.xml --testsuite household
+	./vendor/bin/phpunit --exclude-group='disabled' --log-junit build/test_results/phpunit/junit.xml --testsuite shared
+
+test-coverage tc:
+	@docker-compose -f $(compose_file) exec $(household-php-service) $(household-bin-location)/phpunit --coverage-html .coverage $(CMD)
 	@brave ".coverage/index.html"
 
 migrate:
-	@docker-compose exec $(household_php_service) php $(duty-console-location) doctrine:migrations:migrate
+	@docker-compose exec $(household-php-service) php $(household-console-location) doctrine:migrations:migrate
 
 diff:
-	@docker-compose exec $(household_php_service) php $(duty-console-location) doctrine:migrations:diff
+	@docker-compose exec $(household-php-service) php $(household-console-location) doctrine:migrations:diff
 
 .PHONY: static-analysis
 static-analysis: composer-env-file
-	docker-compose exec $(household_php_service) ./vendor/bin/psalm $(CMD)
+	docker-compose exec $(household-php-service) ./vendor/bin/psalm $(CMD)
