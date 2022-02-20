@@ -9,7 +9,6 @@ use Doctrine\Common\Cache\Psr6\DoctrineProvider;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver;
-use Doctrine\ORM\Mapping\Driver\SimplifiedYamlDriver;
 use Doctrine\ORM\Tools\Setup;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 

@@ -43,7 +43,7 @@ final class DutyPostController extends ApiController
     {
         $this->dispatch(new CreateDutyCommand(
             Uuid::random()->value(),
-            $request->request->get('name')
+            (string) $request->request->get('name', '')
         ));
     }
 }
