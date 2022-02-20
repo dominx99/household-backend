@@ -1,0 +1,18 @@
+services:
+  # Databases
+  Doctrine\ORM\EntityManager:
+    factory: [ App\Household\Shared\Infrastructure\Doctrine\HouseholdEntityManagerFactory, create ]
+    arguments:
+      - driver: '%env(HOUSEHOLD_DATABASE_DRIVER)%'
+        host: '%env(HOUSEHOLD_DATABASE_HOST)%'
+        port: '%env(HOUSEHOLD_DATABASE_PORT)%'
+        dbname: '%env(HOUSEHOLD_DATABASE_NAME)%'
+        user: '%env(HOUSEHOLD_DATABASE_USER)%'
+        password: '%env(HOUSEHOLD_DATABASE_PASSWORD)%'
+      - '%env(APP_ENV)%'
+    tags:
+      - { name: database_connection }
+    public: true
+
+  # Duties
+  App\Household\Duty\Domain\DutyRepository: '@App\Household\Duty\Infrastructure\Persistence\MySqlDutyRepository'

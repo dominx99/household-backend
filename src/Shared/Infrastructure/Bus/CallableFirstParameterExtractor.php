@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace App\Shared\Infrastructure\Bus;
 
 use App\Shared\Domain\Bus\Event\DomainEventSubscriber;
+use function Lambdish\Phunctional\map;
+use function Lambdish\Phunctional\reduce;
+use function Lambdish\Phunctional\reindex;
 use LogicException;
 use ReflectionClass;
 use ReflectionMethod;
 use ReflectionNamedType;
-use function Lambdish\Phunctional\map;
-use function Lambdish\Phunctional\reduce;
-use function Lambdish\Phunctional\reindex;
 
 final class CallableFirstParameterExtractor
 {
@@ -27,7 +27,7 @@ final class CallableFirstParameterExtractor
 
     private static function classExtractor(CallableFirstParameterExtractor $parameterExtractor): callable
     {
-        return static fn(callable $handler): ?string => $parameterExtractor->extract($handler);
+        return static fn (callable $handler): ?string => $parameterExtractor->extract($handler);
     }
 
     private static function pipedCallablesReducer(): callable
@@ -45,13 +45,13 @@ final class CallableFirstParameterExtractor
 
     private static function unflatten(): callable
     {
-        return static fn($value) => [$value];
+        return static fn ($value) => [$value];
     }
 
     public function extract($class): ?string
     {
         $reflector = new ReflectionClass($class);
-        $method    = $reflector->getMethod('__invoke');
+        $method = $reflector->getMethod('__invoke');
 
         if ($this->hasOnlyOneParameter($method)) {
             return $this->firstParameterClassFrom($method);
@@ -74,6 +74,6 @@ final class CallableFirstParameterExtractor
 
     private function hasOnlyOneParameter(ReflectionMethod $method): bool
     {
-        return $method->getNumberOfParameters() === 1;
+        return 1 === $method->getNumberOfParameters();
     }
 }

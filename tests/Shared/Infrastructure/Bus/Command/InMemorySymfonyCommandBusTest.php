@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Tests\Shared\Infrastructure\Bus\Command;
 
-use RuntimeException;
-use Mockery\MockInterface;
 use App\Shared\Domain\Bus\Command\Command;
-use App\Shared\Infrastructure\PhpUnit\UnitTestCase;
 use App\Shared\Domain\Bus\Command\CommandNotRegisteredError;
 use App\Shared\Infrastructure\Bus\Command\InMemorySymfonyCommandBus;
+use App\Shared\Infrastructure\PhpUnit\UnitTestCase;
+use Mockery\MockInterface;
+use RuntimeException;
 
 final class InMemorySymfonyCommandBusTest extends UnitTestCase
 {
@@ -40,7 +40,7 @@ final class InMemorySymfonyCommandBusTest extends UnitTestCase
 
     private function commandHandler(): object
     {
-        return new class {
+        return new class() {
             public function __invoke(FakeCommand $command)
             {
                 throw new RuntimeException('This works fine!');

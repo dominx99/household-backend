@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Shared\Infrastructure\Symfony;
 
+use App\Shared\Domain\Validation\ValidationFailedError;
 use InvalidArgumentException;
 use function Lambdish\Phunctional\get;
 use Symfony\Component\HttpFoundation\Response;
-use App\Shared\Domain\Validation\ValidationFailedError;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 final class ApiExceptionsHttpStatusCodeMapping

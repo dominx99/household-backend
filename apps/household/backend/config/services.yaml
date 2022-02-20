@@ -1,13 +1,27 @@
-parameters:
+imports:
+  - { resource: ../../../../src/Household/Shared/Infrastructure/Symfony/DependencyInjection/household_services.yaml }
 
 services:
   _defaults:
     autowire: true
     autoconfigure: true
 
+  _instanceof:
+    App\Shared\Domain\Bus\Command\CommandHandler:
+      tags: ['command_handler']
+
+    App\Shared\Domain\Bus\Event\DomainEventSubscriber:
+      tags: ['domain_event_subscriber']
 
   App\:
     resource: '../../../../src'
+
+  App\Shared\Infrastructure\Bus\Event\InMemory\InMemorySymfonyEventBus:
+    arguments: [!tagged domain_event_subscriber]
+    lazy: true
+
+  App\Shared\Infrastructure\Bus\Command\InMemorySymfonyCommandBus:
+    arguments: [!tagged command_handler]
 
   Apps\Household\Backend\Controller\:
     resource: '../src/Controller'

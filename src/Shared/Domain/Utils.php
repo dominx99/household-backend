@@ -25,4 +25,14 @@ final class Utils
     {
         return ctype_lower($text) ? $text : strtolower(preg_replace('/([^A-Z\s])([A-Z])/', '$1_$2', $text));
     }
+
+    public static function endsWith(string $needle, string $haystack): bool
+    {
+        $length = strlen($needle);
+        if (0 === $length) {
+            return true;
+        }
+
+        return substr($haystack, -$length) === $needle;
+    }
 }

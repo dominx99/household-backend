@@ -6,8 +6,9 @@ namespace App\Household\Duty\Application\Create;
 
 use App\Household\Duty\Domain\DutyId;
 use App\Household\Duty\Domain\DutyName;
+use App\Shared\Domain\Bus\Command\CommandHandler;
 
-final class CreateDutyCommandHandler
+final class CreateDutyCommandHandler implements CommandHandler
 {
     public function __construct(private DutyCreator $creator)
     {

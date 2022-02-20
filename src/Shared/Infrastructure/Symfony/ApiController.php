@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Shared\Infrastructure\Symfony;
 
 use App\Shared\Domain\Bus\Command\Command;
+use App\Shared\Domain\Bus\Command\CommandBus;
 use App\Shared\Domain\Validation\ValidationFailedError;
 use function Lambdish\Phunctional\each;
 use Symfony\Component\HttpFoundation\Request;
