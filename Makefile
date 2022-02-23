@@ -95,5 +95,5 @@ diff:
 	@docker-compose exec $(household-php-service) php $(household-console-location) doctrine:migrations:diff
 
 .PHONY: static-analysis
-static-analysis: composer-env-file
+static-analysis st: composer-env-file
 	docker-compose exec $(household-php-service) ./vendor/bin/psalm $(CMD)
