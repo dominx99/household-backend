@@ -12,6 +12,8 @@ use App\Tests\Household\DutyVariant\DutyVariantModuleUnitTestCase;
 
 final class CreateDutyVariantCommandHandlerTest extends DutyVariantModuleUnitTestCase
 {
+    private CreateDutyVariantCommandHandler $handler;
+
     public function setUp(): void
     {
         parent::setUp();

@@ -6,6 +6,9 @@ namespace App\Tests\Household\DutyVariant\Application\Create;
 
 use App\Household\Duty\Domain\DutyId;
 use App\Household\DutyVariant\Application\Create\CreateDutyVariantCommand;
+use App\Household\DutyVariant\Domain\DutyVariantId;
+use App\Household\DutyVariant\Domain\DutyVariantName;
+use App\Household\DutyVariant\Domain\DutyVariantPoints;
 use App\Tests\Household\Duty\Domain\DutyIdMother;
 use App\Tests\Household\DutyVariant\Domain\DutyVariantIdMother;
 use App\Tests\Household\DutyVariant\Domain\DutyVariantNameMother;
