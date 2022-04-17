@@ -27,4 +27,12 @@ abstract class DutyModuleUnitTestCase extends UnitTestCase
             ->andReturnNull()
         ;
     }
+
+    protected function shouldSearch(?Duty $duty): void
+    {
+        $this->repository()
+            ->shouldReceive('search')
+            ->once()
+            ->andReturn($duty);
+    }
 }

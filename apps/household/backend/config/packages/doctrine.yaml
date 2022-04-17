@@ -1,11 +1,17 @@
 doctrine:
   dbal:
-    driver: '%env(HOUSEHOLD_DATABASE_DRIVER)%'
-    user: '%env(HOUSEHOLD_DATABASE_USER)%'
-    password: '%env(HOUSEHOLD_DATABASE_PASSWORD)%'
-    dbname: '%env(HOUSEHOLD_DATABASE_NAME)%'
-    host: '%env(HOUSEHOLD_DATABASE_HOST)%'
-    port: '%env(HOUSEHOLD_DATABASE_PORT)%'
+    connections:
+      household:
+        driver: '%env(HOUSEHOLD_DATABASE_DRIVER)%'
+        user: '%env(HOUSEHOLD_DATABASE_USER)%'
+        password: '%env(HOUSEHOLD_DATABASE_PASSWORD)%'
+        dbname: '%env(HOUSEHOLD_DATABASE_NAME)%'
+        host: '%env(HOUSEHOLD_DATABASE_HOST)%'
+        port: '%env(HOUSEHOLD_DATABASE_PORT)%'
+
+    types:
+      duty_id: App\Household\Duty\Infrastructure\Persistence\Doctrine\DutyIdType
+      duty_variant_id: App\Household\DutyVariant\Infrastructure\Persistence\Doctrine\DutyVariantIdType
 
   orm:
     auto_generate_proxy_classes: true
@@ -17,11 +23,11 @@ doctrine:
         type: xml
         dir: '%kernel.project_dir%/../../../src/Household/Duty/Infrastructure/Persistence/Doctrine'
         prefix: 'App\Household\Duty\Domain'
-
-when@test:
-  doctrine:
-    dbal:
-      dbname_suffix: '_test%env(default::TEST_TOKEN)%'
+      DutyVariant:
+        is_bundle: false
+        type: xml
+        dir: '%kernel.project_dir%/../../../src/Household/DutyVariant/Infrastructure/Persistence/Doctrine'
+        prefix: 'App\Household\DutyVariant\Domain'
 
 when@prod:
   doctrine:

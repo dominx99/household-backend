@@ -23,16 +23,16 @@ final class DutyVariant extends AggregateRoot
         DutyVariantName $name,
         DutyVariantPoints $points,
     ): self {
-        $duty = new self($id, $dutyId, $name, $points);
+        $dutyVariant = new self($id, $dutyId, $name, $points);
 
-        $duty->record(new DutyVariantCreatedDomainEvent(
+        $dutyVariant->record(new DutyVariantCreatedDomainEvent(
             $id->value(),
             $dutyId->value(),
             $name->value(),
             $points->value(),
         ));
 
-        return $duty;
+        return $dutyVariant;
     }
 
     public function id(): DutyVariantId

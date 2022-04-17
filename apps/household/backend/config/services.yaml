@@ -10,6 +10,9 @@ services:
     App\Shared\Domain\Bus\Command\CommandHandler:
       tags: ['command_handler']
 
+    App\Shared\Domain\Bus\Query\QueryHandler:
+      tags: ['query_handler']
+
     App\Shared\Domain\Bus\Event\DomainEventSubscriber:
       tags: ['domain_event_subscriber']
 
@@ -22,6 +25,9 @@ services:
 
   App\Shared\Infrastructure\Bus\Command\InMemorySymfonyCommandBus:
     arguments: [!tagged command_handler]
+
+  App\Shared\Infrastructure\Bus\Query\InMemorySymfonyQueryBus:
+    arguments: [!tagged query_handler]
 
   Apps\Household\Backend\Controller\:
     resource: '../src/Controller'

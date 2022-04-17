@@ -6,6 +6,9 @@ namespace App\Shared\Infrastructure\Symfony;
 
 use App\Shared\Domain\Bus\Command\Command;
 use App\Shared\Domain\Bus\Command\CommandBus;
+use App\Shared\Domain\Bus\Query\Query;
+use App\Shared\Domain\Bus\Query\QueryBus;
+use App\Shared\Domain\Bus\Query\Response;
 use App\Shared\Domain\Validation\ValidationFailedError;
 use function Lambdish\Phunctional\each;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,6 +20,7 @@ abstract class ApiController
 {
     public function __construct(
         private CommandBus $commandBus,
+        private QueryBus $queryBus,
         ApiExceptionsHttpStatusCodeMapping $exceptionHandler
     ) {
         each(
@@ -55,5 +59,10 @@ abstract class ApiController
     protected function dispatch(Command $command): void
     {
         $this->commandBus->dispatch($command);
+    }
+
+    protected function ask(Query $query): ?Response
+    {
+        return $this->queryBus->ask($query);
     }
 }
