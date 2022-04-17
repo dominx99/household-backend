@@ -10,7 +10,7 @@ final class CreateDutyVariantCommand implements Command
 {
     public function __construct(
         private string $id,
-        private string $dutyId,
+        private string $taskId,
         private string $name,
         private int $points,
     ) {
@@ -21,9 +21,9 @@ final class CreateDutyVariantCommand implements Command
         return $this->id;
     }
 
-    public function dutyId(): string
+    public function taskId(): string
     {
-        return $this->dutyId;
+        return $this->taskId;
     }
 
     public function name(): string

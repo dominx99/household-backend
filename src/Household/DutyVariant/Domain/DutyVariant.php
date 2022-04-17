@@ -11,7 +11,7 @@ final class DutyVariant extends AggregateRoot
 {
     public function __construct(
         private DutyVariantId $id,
-        private TaskId $dutyId,
+        private TaskId $taskId,
         private DutyVariantName $name,
         private DutyVariantPoints $points,
     ) {
@@ -19,15 +19,15 @@ final class DutyVariant extends AggregateRoot
 
     public static function create(
         DutyVariantId $id,
-        TaskId $dutyId,
+        TaskId $taskId,
         DutyVariantName $name,
         DutyVariantPoints $points,
     ): self {
-        $dutyVariant = new self($id, $dutyId, $name, $points);
+        $dutyVariant = new self($id, $taskId, $name, $points);
 
         $dutyVariant->record(new DutyVariantCreatedDomainEvent(
             $id->value(),
-            $dutyId->value(),
+            $taskId->value(),
             $name->value(),
             $points->value(),
         ));
@@ -40,9 +40,9 @@ final class DutyVariant extends AggregateRoot
         return $this->id;
     }
 
-    public function dutyId(): TaskId
+    public function taskId(): TaskId
     {
-        return $this->dutyId;
+        return $this->taskId;
     }
 
     public function name(): DutyVariantName

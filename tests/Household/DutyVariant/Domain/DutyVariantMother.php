@@ -16,13 +16,13 @@ final class DutyVariantMother
 {
     public static function create(
         ?DutyVariantId $id = null,
-        ?TaskId $dutyId = null,
+        ?TaskId $taskId = null,
         ?DutyVariantName $name = null,
         ?DutyVariantPoints $points = null,
     ): DutyVariant {
         return new DutyVariant(
             $id ?? DutyVariantIdMother::create(),
-            $dutyId ?? TaskIdMother::create(),
+            $taskId ?? TaskIdMother::create(),
             $name ?? DutyVariantNameMother::create(),
             $points ?? DutyVariantPointsMother::create(),
         );
@@ -32,7 +32,7 @@ final class DutyVariantMother
     {
         return self::create(
             DutyVariantIdMother::create($request->id()),
-            TaskIdMother::create($request->dutyId()),
+            TaskIdMother::create($request->taskId()),
             DutyVariantNameMother::create($request->name()),
             DutyVariantPointsMother::create($request->points()),
         );

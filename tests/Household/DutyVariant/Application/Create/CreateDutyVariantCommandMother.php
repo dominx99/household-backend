@@ -18,13 +18,13 @@ final class CreateDutyVariantCommandMother
 {
     public static function create(
         ?DutyVariantId $id = null,
-        ?TaskId $dutyId = null,
+        ?TaskId $taskId = null,
         ?DutyVariantName $name = null,
         ?DutyVariantPoints $points = null,
     ): CreateDutyVariantCommand {
         return new CreateDutyVariantCommand(
             $id?->value() ?? DutyVariantIdMother::create()->value(),
-            $dutyId?->value() ?? TaskIdMother::create()->value(),
+            $taskId?->value() ?? TaskIdMother::create()->value(),
             $name?->value() ?? DutyVariantNameMother::create()->value(),
             $points?->value() ?? DutyVariantPointsMother::create()->value(),
         );

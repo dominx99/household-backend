@@ -16,7 +16,7 @@ final class FindTaskExistsQueryHandler implements QueryHandler
 
     public function __invoke(FindTaskExistsQuery $query): TaskExistsResponse
     {
-        if (!$this->repository->search(new TaskId($query->dutyId()))) {
+        if (!$this->repository->search(new TaskId($query->taskId()))) {
             return new TaskExistsResponse(false);
         }
 

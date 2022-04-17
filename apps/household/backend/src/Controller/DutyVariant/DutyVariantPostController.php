@@ -23,7 +23,7 @@ final class DutyVariantPostController extends ApiController
     {
         $this->validateRequest($request);
 
-        $this->ensureDutyExists((string) $request->request->get('dutyId', ''));
+        $this->ensureDutyExists((string) $request->request->get('taskId', ''));
         $this->createDutyVariant($request);
 
         return new Response('', Response::HTTP_CREATED);
@@ -38,7 +38,7 @@ final class DutyVariantPostController extends ApiController
     {
         return new Assert\Collection(
             [
-                'dutyId' => [new Assert\NotBlank()],
+                'taskId' => [new Assert\NotBlank()],
                 'name' => [new Assert\NotBlank(), new Assert\Length(['min' => 1, 'max' => 255])],
             ]
         );
@@ -48,19 +48,19 @@ final class DutyVariantPostController extends ApiController
     {
         $this->dispatch(new CreateDutyVariantCommand(
             Uuid::random()->value(),
-            (string) $request->request->get('dutyId', ''),
+            (string) $request->request->get('taskId', ''),
             (string) $request->request->get('name', ''),
             (int) $request->request->get('points', ''),
         ));
     }
 
-    private function ensureDutyExists(string $dutyId): void
+    private function ensureDutyExists(string $taskId): void
     {
         /** @var \App\Household\Duty\Application\Find\DutyExistsResponse */
-        $response = $this->ask(new FindTaskExistsQuery($dutyId));
+        $response = $this->ask(new FindTaskExistsQuery($taskId));
 
         if (!$response->exists()) {
-            throw new TaskNotFound(new TaskId($dutyId));
+            throw new TaskNotFound(new TaskId($taskId));
         }
     }
 }

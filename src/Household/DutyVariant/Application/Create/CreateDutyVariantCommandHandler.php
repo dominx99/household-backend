@@ -20,7 +20,7 @@ final class CreateDutyVariantCommandHandler implements CommandHandler
     {
         $this->creator->__invoke(
             new DutyVariantId($command->id()),
-            new TaskId($command->dutyId()),
+            new TaskId($command->taskId()),
             new DutyVariantName($command->name()),
             new DutyVariantPoints($command->points()),
         );

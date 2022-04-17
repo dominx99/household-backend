@@ -20,6 +20,6 @@ final class TaskNotFound extends DomainError
 
     protected function errorMessage(): string
     {
-        return sprintf('The duty <%s> has not been found', $this->id->value());
+        return sprintf('The task <%s> has not been found', $this->id->value());
     }
 }

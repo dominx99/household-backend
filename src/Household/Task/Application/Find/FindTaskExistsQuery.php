@@ -8,13 +8,13 @@ use App\Shared\Domain\Bus\Query\Query;
 
 final class FindTaskExistsQuery implements Query
 {
-    public function __construct(private string $dutyId)
+    public function __construct(private string $taskId)
     {
-        $this->dutyId;
+        $this->taskId;
     }
 
-    public function dutyId(): string
+    public function taskId(): string
     {
-        return $this->dutyId;
+        return $this->taskId;
     }
 }

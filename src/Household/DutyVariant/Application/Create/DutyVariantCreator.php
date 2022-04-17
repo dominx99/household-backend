@@ -20,11 +20,11 @@ final class DutyVariantCreator
 
     public function __invoke(
         DutyVariantId $id,
-        TaskId $dutyId,
+        TaskId $taskId,
         DutyVariantName $name,
         DutyVariantPoints $points,
     ): void {
-        $dutyVariant = DutyVariant::create($id, $dutyId, $name, $points);
+        $dutyVariant = DutyVariant::create($id, $taskId, $name, $points);
 
         $this->repository->save($dutyVariant);
         $this->eventBus->publish(...$dutyVariant->pullDomainEvents());

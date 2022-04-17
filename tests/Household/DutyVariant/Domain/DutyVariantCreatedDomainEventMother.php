@@ -16,13 +16,13 @@ final class DutyVariantCreatedDomainEventMother
 {
     public static function create(
         ?DutyVariantId $id = null,
-        ?TaskId $dutyId = null,
+        ?TaskId $taskId = null,
         ?DutyVariantName $name = null,
         ?DutyVariantPoints $points = null,
     ): DutyVariantCreatedDomainEvent {
         return new DutyVariantCreatedDomainEvent(
             $id?->value() ?? DutyVariantIdMother::create()->value(),
-            $dutyId?->value() ?? TaskIdMother::create()->value(),
+            $taskId?->value() ?? TaskIdMother::create()->value(),
             $name?->value() ?? DutyVariantNameMother::create()->value(),
             $points?->value() ?? DutyVariantPointsMother::create()->value(),
         );
@@ -32,7 +32,7 @@ final class DutyVariantCreatedDomainEventMother
     {
         return self::create(
             $dutyVariant->id(),
-            $dutyVariant->dutyId(),
+            $dutyVariant->taskId(),
             $dutyVariant->name(),
             $dutyVariant->points(),
         );

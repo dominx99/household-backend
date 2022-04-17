@@ -10,7 +10,7 @@ final class DutyVariantCreatedDomainEvent extends DomainEvent
 {
     public function __construct(
         string $id,
-        private string $dutyId,
+        private string $taskId,
         private string $name,
         private int $points,
         string $eventId = null,
