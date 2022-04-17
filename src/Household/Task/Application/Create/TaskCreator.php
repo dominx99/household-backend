@@ -20,9 +20,9 @@ final class TaskCreator
 
     public function __invoke(TaskId $id, TaskName $name): void
     {
-        $duty = Task::create($id, $name);
+        $task = Task::create($id, $name);
 
-        $this->repository->save($duty);
-        $this->eventBus->publish(...$duty->pullDomainEvents());
+        $this->repository->save($task);
+        $this->eventBus->publish(...$task->pullDomainEvents());
     }
 }

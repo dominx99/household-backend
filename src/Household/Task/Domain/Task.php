@@ -16,11 +16,11 @@ final class Task extends AggregateRoot
 
     public static function create(TaskId $id, TaskName $name): self
     {
-        $duty = new self($id, $name);
+        $task = new self($id, $name);
 
-        $duty->record(new TaskCreatedDomainEvent($id->value(), $name->value()));
+        $task->record(new TaskCreatedDomainEvent($id->value(), $name->value()));
 
-        return $duty;
+        return $task;
     }
 
     public function id(): TaskId

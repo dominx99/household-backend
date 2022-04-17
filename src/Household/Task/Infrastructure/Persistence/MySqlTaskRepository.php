@@ -11,9 +11,9 @@ use App\Shared\Infrastructure\Persistence\Doctrine\DoctrineRepository;
 
 final class MySqlTaskRepository extends DoctrineRepository implements TaskRepository
 {
-    public function save(Task $duty): void
+    public function save(Task $task): void
     {
-        $this->persist($duty);
+        $this->persist($task);
     }
 
     public function search(TaskId $id): ?Task
