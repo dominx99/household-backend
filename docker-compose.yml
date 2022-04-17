@@ -1,6 +1,7 @@
 version: "3"
 services:
   php_household:
+    entrypoint: "./docker-entrypoint"
     build:
       context: ./
       dockerfile: ./docker/php/Dockerfile

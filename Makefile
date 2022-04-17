@@ -67,6 +67,9 @@ fix:
 clear:
 	@sudo rm -rf ./apps/*/*/var
 	@docker-compose exec $(household-php-service) php $(household-console-location) cache:warmup
+	@docker-compose exec $(household-php-service) php $(household-console-location) doctrine:cache:clear-metadata
+	@docker-compose exec $(household-php-service) php $(household-console-location) doctrine:cache:clear-query
+	@docker-compose exec $(household-php-service) php $(household-console-location) doctrine:cache:clear-result
 
 .PHONY: test
 test: composer-env-file

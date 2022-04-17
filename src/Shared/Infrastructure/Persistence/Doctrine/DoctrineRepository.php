@@ -5,15 +5,16 @@ declare(strict_types=1);
 namespace App\Shared\Infrastructure\Persistence\Doctrine;
 
 use App\Shared\Domain\Aggregate\AggregateRoot;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityRepository;
 
 abstract class DoctrineRepository
 {
-    public function __construct(private EntityManager $entityManager)
+    public function __construct(private EntityManagerInterface $entityManager)
     {
     }
 
-    protected function entityManager(): EntityManager
+    protected function entityManager(): EntityManagerInterface
     {
         return $this->entityManager;
     }
@@ -21,6 +22,11 @@ abstract class DoctrineRepository
     protected function persist(AggregateRoot $entity): void
     {
         $this->entityManager()->persist($entity);
-        $this->entityManager()->flush($entity);
+        $this->entityManager()->flush();
+    }
+
+    protected function repository(string $entityClass): EntityRepository
+    {
+        return $this->entityManager->getRepository($entityClass);
     }
 }

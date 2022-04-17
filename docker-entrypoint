@@ -1,0 +1,8 @@
+#!/bin/bash
+
+etc/infrastructure/mysql/wait-for-connection
+
+php apps/household/backend/bin/console doctrine:database:create --if-not-exists --env=test
+php apps/household/backend/bin/console doctrine:migrations:migrate --no-interaction --env=test
+
+php-fpm

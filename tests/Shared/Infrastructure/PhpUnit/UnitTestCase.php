@@ -7,6 +7,8 @@ namespace App\Tests\Shared\Infrastructure\PhpUnit;
 use App\Shared\Domain\Bus\Command\Command;
 use App\Shared\Domain\Bus\Event\DomainEvent;
 use App\Shared\Domain\Bus\Event\EventBus;
+use App\Shared\Domain\Bus\Query\Query;
+use App\Shared\Domain\Bus\Query\Response;
 use App\Tests\Shared\Domain\TestUtils;
 use Mockery;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
@@ -43,5 +45,12 @@ abstract class UnitTestCase extends MockeryTestCase
     protected function similarTo($value, $delta = 0.0): MatcherAbstract
     {
         return TestUtils::similarTo($value, $delta);
+    }
+
+    protected function assertAskResponse(Response $expected, Query $query, callable $queryHandler): void
+    {
+        $actual = $queryHandler($query);
+
+        $this->assertEquals($expected, $actual);
     }
 }

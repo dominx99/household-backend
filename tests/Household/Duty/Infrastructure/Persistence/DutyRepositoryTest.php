@@ -10,10 +10,20 @@ use App\Tests\Household\Duty\DutyModuleInfrastructureTestCase;
 final class DutyRepositoryTest extends DutyModuleInfrastructureTestCase
 {
     /** @test */
-    public function it_should_save_a_duty(): void
+    public function it_should_save_duty(): void
     {
         $duty = DutyMother::create();
 
         $this->repository()->save($duty);
+    }
+
+    /** @test */
+    public function is_should_return_existing_duty(): void
+    {
+        $duty = DutyMother::create();
+
+        $this->repository()->save($duty);
+
+        $this->assertEquals($duty, $this->repository()->search($duty->id()));
     }
 }

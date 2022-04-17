@@ -7,4 +7,6 @@ namespace App\Household\Duty\Domain;
 interface DutyRepository
 {
     public function save(Duty $duty): void;
+
+    public function search(DutyId $id): ?Duty;
 }
