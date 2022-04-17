@@ -56,7 +56,7 @@ final class DutyVariantPostController extends ApiController
 
     private function ensureDutyExists(string $taskId): void
     {
-        /** @var \App\Household\Duty\Application\Find\DutyExistsResponse */
+        /** @var \App\Household\Task\Application\Find\TaskExistsResponse $response */
         $response = $this->ask(new FindTaskExistsQuery($taskId));
 
         if (!$response->exists()) {
