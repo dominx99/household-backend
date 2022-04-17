@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Apps\Household\Backend\Controller\Duty;
+namespace Apps\Household\Backend\Controller\Task;
 
 use App\Household\Task\Application\Create\CreateTaskCommand;
 use App\Shared\Domain\ValueObject\Uuid;
@@ -13,9 +13,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Constraints as Assert;
 
-final class DutyPostController extends ApiController
+final class TaskPostController extends ApiController
 {
-    #[Route('/api/v1/duties', methods: ['POST'])]
+    #[Route('/api/v1/tasks', methods: ['POST'])]
     public function __invoke(Request $request): Response
     {
         $this->validateRequest($request);

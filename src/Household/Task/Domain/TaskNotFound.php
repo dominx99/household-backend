@@ -15,7 +15,7 @@ final class TaskNotFound extends DomainError
 
     public function errorCode(): string
     {
-        return 'duty_not_found';
+        return 'task_not_found';
     }
 
     protected function errorMessage(): string
