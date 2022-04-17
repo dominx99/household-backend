@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Apps\Household\Backend\Controller\DutyVariant;
 
-use App\Household\Duty\Application\Find\FindDutyExistsQuery;
-use App\Household\Duty\Domain\DutyId;
-use App\Household\Duty\Domain\DutyNotFound;
 use App\Household\DutyVariant\Application\Create\CreateDutyVariantCommand;
+use App\Household\Task\Application\Find\FindTaskExistsQuery;
+use App\Household\Task\Domain\TaskId;
+use App\Household\Task\Domain\TaskNotFound;
 use App\Shared\Domain\ValueObject\Uuid;
 use App\Shared\Infrastructure\Symfony\ApiController;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,10 +57,10 @@ final class DutyVariantPostController extends ApiController
     private function ensureDutyExists(string $dutyId): void
     {
         /** @var \App\Household\Duty\Application\Find\DutyExistsResponse */
-        $response = $this->ask(new FindDutyExistsQuery($dutyId));
+        $response = $this->ask(new FindTaskExistsQuery($dutyId));
 
         if (!$response->exists()) {
-            throw new DutyNotFound(new DutyId($dutyId));
+            throw new TaskNotFound(new TaskId($dutyId));
         }
     }
 }

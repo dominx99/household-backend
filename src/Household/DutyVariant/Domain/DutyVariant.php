@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\Household\DutyVariant\Domain;
 
-use App\Household\Duty\Domain\DutyId;
+use App\Household\Task\Domain\TaskId;
 use App\Shared\Domain\Aggregate\AggregateRoot;
 
 final class DutyVariant extends AggregateRoot
 {
     public function __construct(
         private DutyVariantId $id,
-        private DutyId $dutyId,
+        private TaskId $dutyId,
         private DutyVariantName $name,
         private DutyVariantPoints $points,
     ) {
@@ -19,7 +19,7 @@ final class DutyVariant extends AggregateRoot
 
     public static function create(
         DutyVariantId $id,
-        DutyId $dutyId,
+        TaskId $dutyId,
         DutyVariantName $name,
         DutyVariantPoints $points,
     ): self {
@@ -40,7 +40,7 @@ final class DutyVariant extends AggregateRoot
         return $this->id;
     }
 
-    public function dutyId(): DutyId
+    public function dutyId(): TaskId
     {
         return $this->dutyId;
     }

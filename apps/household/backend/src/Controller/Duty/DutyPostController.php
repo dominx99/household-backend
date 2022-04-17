@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Apps\Household\Backend\Controller\Duty;
 
-use App\Household\Duty\Application\Create\CreateDutyCommand;
+use App\Household\Task\Application\Create\CreateTaskCommand;
 use App\Shared\Domain\ValueObject\Uuid;
 use App\Shared\Infrastructure\Symfony\ApiController;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,7 +41,7 @@ final class DutyPostController extends ApiController
 
     private function createDuty(Request $request): void
     {
-        $this->dispatch(new CreateDutyCommand(
+        $this->dispatch(new CreateTaskCommand(
             Uuid::random()->value(),
             (string) $request->request->get('name', '')
         ));

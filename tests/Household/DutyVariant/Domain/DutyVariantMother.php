@@ -4,25 +4,25 @@ declare(strict_types=1);
 
 namespace App\Tests\Household\DutyVariant\Domain;
 
-use App\Household\Duty\Domain\DutyId;
 use App\Household\DutyVariant\Application\Create\CreateDutyVariantCommand;
 use App\Household\DutyVariant\Domain\DutyVariant;
 use App\Household\DutyVariant\Domain\DutyVariantId;
 use App\Household\DutyVariant\Domain\DutyVariantName;
 use App\Household\DutyVariant\Domain\DutyVariantPoints;
-use App\Tests\Household\Duty\Domain\DutyIdMother;
+use App\Household\Task\Domain\TaskId;
+use App\Tests\Household\Task\Domain\TaskIdMother;
 
 final class DutyVariantMother
 {
     public static function create(
         ?DutyVariantId $id = null,
-        ?DutyId $dutyId = null,
+        ?TaskId $dutyId = null,
         ?DutyVariantName $name = null,
         ?DutyVariantPoints $points = null,
     ): DutyVariant {
         return new DutyVariant(
             $id ?? DutyVariantIdMother::create(),
-            $dutyId ?? DutyIdMother::create(),
+            $dutyId ?? TaskIdMother::create(),
             $name ?? DutyVariantNameMother::create(),
             $points ?? DutyVariantPointsMother::create(),
         );
@@ -32,7 +32,7 @@ final class DutyVariantMother
     {
         return self::create(
             DutyVariantIdMother::create($request->id()),
-            DutyIdMother::create($request->dutyId()),
+            TaskIdMother::create($request->dutyId()),
             DutyVariantNameMother::create($request->name()),
             DutyVariantPointsMother::create($request->points()),
         );

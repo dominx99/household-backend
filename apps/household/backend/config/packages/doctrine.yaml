@@ -10,7 +10,7 @@ doctrine:
         port: '%env(HOUSEHOLD_DATABASE_PORT)%'
 
     types:
-      duty_id: App\Household\Duty\Infrastructure\Persistence\Doctrine\DutyIdType
+      task_id: App\Household\Task\Infrastructure\Persistence\Doctrine\TaskIdType
       duty_variant_id: App\Household\DutyVariant\Infrastructure\Persistence\Doctrine\DutyVariantIdType
 
   orm:
@@ -18,11 +18,11 @@ doctrine:
     auto_mapping: true
     naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
     mappings:
-      Duty:
+      Task:
         is_bundle: false
         type: xml
-        dir: '%kernel.project_dir%/../../../src/Household/Duty/Infrastructure/Persistence/Doctrine'
-        prefix: 'App\Household\Duty\Domain'
+        dir: '%kernel.project_dir%/../../../src/Household/Task/Infrastructure/Persistence/Doctrine'
+        prefix: 'App\Household\Task\Domain'
       DutyVariant:
         is_bundle: false
         type: xml
