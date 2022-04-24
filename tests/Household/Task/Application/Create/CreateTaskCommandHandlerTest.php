@@ -11,7 +11,7 @@ use App\Tests\Household\Task\Domain\TaskCreatedDomainEventMother;
 use App\Tests\Household\Task\Domain\TaskMother;
 use App\Tests\Household\Task\TaskModuleUnitTestCase;
 
-final class CreateDutyCommandHandlerTest extends TaskModuleUnitTestCase
+final class CreateTaskCommandHandlerTest extends TaskModuleUnitTestCase
 {
     private CreateTaskCommandHandler|null $handler;
 

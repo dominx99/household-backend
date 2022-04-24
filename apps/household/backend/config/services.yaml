@@ -33,8 +33,6 @@ services:
     resource: '../src/Controller'
     tags: ['controller.service_arguments']
 
-  App\Household\Duty\Domain\DutyRepository: '@App\Household\Duty\Infrastructure\Persistence\MySqlDutyRepository'
-
   App\Shared\Infrastructure\Symfony\ApiExceptionListener:
     tags:
       - { name: kernel.event_listener, event: kernel.exception, method: onException }
