@@ -5,3 +5,12 @@ kernel:
 controllers:
   resource: ../src/Controller/
   type: annotation
+
+api_login_check:
+    path: /api/v1/login
+
+api_refresh_token:
+  path: /api/v1/token/refresh
+
+api_token_invalidate:
+  path: /api/v1/token/invalidate
