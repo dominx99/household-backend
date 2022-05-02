@@ -100,3 +100,7 @@ diff:
 .PHONY: static-analysis
 static-analysis st: composer-env-file
 	docker-compose exec $(household-php-service) ./vendor/bin/psalm $(CMD)
+
+.PHONY: console
+console:
+	docker-compose exec $(household-php-service) $(household-console-location) $(CMD)
