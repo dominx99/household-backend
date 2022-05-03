@@ -25,8 +25,8 @@ services:
       - php_household
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.household.rule=Host(`household.local`)"
-      - "traefik.http.routers.household.entrypoints=web"
+      - "traefik.http.routers.household_api.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.household_api.entrypoints=web"
       - "traefik.docker.network=proxy"
     networks:
       proxy:

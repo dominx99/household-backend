@@ -3,10 +3,11 @@ household-php-service := "php_household"
 current-dir := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 household-bin-location := "./apps/household/backend/bin"
 household-console-location := "./apps/household/backend/bin/console"
+env-file := "./.env.local"
 
 # 🐳 Docker Compose
 .PHONY: up
-up: CMD=up --build -d
+up: CMD=--env-file $(env-file) up --build -d
 
 .PHONY: stop
 stop: CMD=stop
