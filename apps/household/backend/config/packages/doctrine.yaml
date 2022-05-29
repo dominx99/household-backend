@@ -10,8 +10,10 @@ doctrine:
         port: '%env(HOUSEHOLD_DATABASE_PORT)%'
 
     types:
+      uuid: App\Shared\Infrastructure\Persistence\Doctrine\BasicIdType
       task_id: App\Household\Task\Infrastructure\Persistence\Doctrine\TaskIdType
       user_id: App\Household\Auth\Infrastructure\Persistence\Doctrine\UserIdType
+      membership_id: App\Household\Membership\Infrastructure\Persistence\Doctrine\MembershipIdType
 
   orm:
     auto_generate_proxy_classes: true
@@ -28,6 +30,11 @@ doctrine:
         type: xml
         dir: '%kernel.project_dir%/../../../src/Household/Auth/Infrastructure/Persistence/Doctrine'
         prefix: 'App\Household\Auth\Domain'
+      Membership:
+        is_bundle: false
+        type: xml
+        dir: '%kernel.project_dir%/../../../src/Household/Membership/Infrastructure/Persistence/Doctrine'
+        prefix: 'App\Household\Membership\Domain'
 
 when@prod:
   doctrine:

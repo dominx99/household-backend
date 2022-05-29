@@ -9,7 +9,8 @@ final class Resource
     public function __construct(
         private string $id,
         private string $type,
-    ) {}
+    ) {
+    }
 
     public function id(): string
     {

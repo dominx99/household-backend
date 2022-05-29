@@ -6,9 +6,10 @@ namespace App\Household\Security\Domain;
 
 final class RoleAssignment
 {
-    public function __construct (
+    public function __construct(
         private string $roleId,
         private string $userId,
         private string $resourceId,
-    ) {}
+    ) {
+    }
 }
