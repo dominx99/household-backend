@@ -1,0 +1,14 @@
+framework:
+  test: true
+
+services:
+  _defaults:
+    autoconfigure: true
+    autowire: true
+
+  App\Tests\:
+    resource: '../../../../tests'
+
+  App\Household\Membership\Domain\MembershipRepository:
+    class: 'App\Household\Membership\Infrastructure\Persistence\MySqlMembershipRepository'
+    public: true

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Household\Membership\Domain;
 
-final class Membership
+use App\Shared\Domain\Aggregate\AggregateRoot;
+
+final class Membership extends AggregateRoot
 {
     public function __construct(
         private MembershipId $id,

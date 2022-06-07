@@ -4,15 +4,17 @@ declare(strict_types=1);
 
 namespace App\Household\Membership\Domain;
 
+use App\Shared\Domain\BasicId;
+
 final class Member
 {
     public function __construct(
-        private string $id,
+        private BasicId $id,
         private string $type,
     ) {
     }
 
-    public function id(): string
+    public function id(): BasicId
     {
         return $this->id;
     }

@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Household\Duty\Application\Create;
+namespace App\Tests\Household\Task\Application\Create;
 
 use App\Household\Task\Application\Create\CreateTaskCommandHandler;
 use App\Household\Task\Application\Create\TaskCreator;
-use App\Tests\Household\Task\Application\Create\CreateTaskCommandMother;
 use App\Tests\Household\Task\Domain\TaskCreatedDomainEventMother;
 use App\Tests\Household\Task\Domain\TaskMother;
 use App\Tests\Household\Task\TaskModuleUnitTestCase;

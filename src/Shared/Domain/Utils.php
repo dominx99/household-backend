@@ -35,4 +35,9 @@ final class Utils
 
         return substr($haystack, -$length) === $needle;
     }
+
+    public static function toCamelCase(string $text): string
+    {
+        return lcfirst(str_replace('_', '', ucwords($text, '_')));
+    }
 }

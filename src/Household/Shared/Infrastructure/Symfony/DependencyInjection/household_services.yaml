@@ -1,2 +1,3 @@
 services:
   App\Household\Task\Domain\TaskRepository: '@App\Household\Task\Infrastructure\Persistence\MySqlTaskRepository'
+  App\Household\Membership\Domain\MembershipRepository: '@App\Household\Membership\Infrastructure\Persistence\MySqlMembershipRepository'

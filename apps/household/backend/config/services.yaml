@@ -36,3 +36,4 @@ services:
   App\Shared\Infrastructure\Symfony\ApiExceptionListener:
     tags:
       - { name: kernel.event_listener, event: kernel.exception, method: onException }
+
