@@ -5,8 +5,12 @@ declare(strict_types=1);
 namespace App\Tests\Household\Membership\Infrastructure\Persistence;
 
 use App\Household\Membership\Domain\Membership;
+use App\Tests\Household\Membership\Application\Converter\EntityNameToMembershipTypeConverter;
+use App\Tests\Household\Membership\Domain\FakeEntity;
+use App\Tests\Household\Membership\Domain\MemberMother;
 use App\Tests\Household\Membership\Domain\MembershipCriteriaMother;
 use App\Tests\Household\Membership\Domain\MembershipMother;
+use App\Tests\Household\Membership\Domain\ResourceMother;
 use App\Tests\Household\Membership\MembershipModuleInfrastructureTestCase;
 
 final class MembershipRepositoryTest extends MembershipModuleInfrastructureTestCase
@@ -54,5 +58,35 @@ final class MembershipRepositoryTest extends MembershipModuleInfrastructureTestC
         $memberships = $this->repository()->matching($criteria);
 
         $this->assertEmpty($memberships);
+    }
+
+    /** @test */
+    public function should_filter_by_criteria(): void
+    {
+        $resource = ResourceMother::create();
+        $memberType = EntityNameToMembershipTypeConverter::convert(FakeEntity::class);
+
+        $memberships = [
+            MembershipMother::create(
+                member: MemberMother::create(type: $memberType),
+                resource: $resource,
+            ),
+            MembershipMother::create(
+                member: MemberMother::create(type: $memberType),
+                resource: $resource,
+            ),
+            MembershipMother::create(
+                member: MemberMother::create(type: $memberType),
+                resource: $resource,
+            ),
+        ];
+
+        $criteria = MembershipCriteriaMother::resourceIdAndMemberTypeEquals($resource->id(), $memberType);
+
+        foreach ($memberships as $membership) {
+            $this->repository()->save($membership);
+        }
+
+        $this->assertSimilar($memberships, $this->repository()->matching($criteria));
     }
 }
