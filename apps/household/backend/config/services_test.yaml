@@ -12,3 +12,7 @@ services:
   App\Household\Membership\Domain\MembershipRepository:
     class: 'App\Household\Membership\Infrastructure\Persistence\MySqlMembershipRepository'
     public: true
+
+  App\Household\Listing\Domain\ListingRepository:
+    class: 'App\Household\Listing\Infrastructure\Persistence\MySqlListingRepository'
+    public: true

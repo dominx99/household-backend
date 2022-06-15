@@ -17,7 +17,7 @@ use function Lambdish\Phunctional\map;
 
 final class SearchMembershipsByResourceAndMemberTypeQueryHandlerTest extends MembershipModuleUnitTestCase
 {
-    private SearchMembershipsByResourceAndMemberTypeQueryHandler $handler;
+    protected SearchMembershipsByResourceAndMemberTypeQueryHandler $handler;
     private MembershipToResponseConverter $converter;
 
     public function setUp(): void

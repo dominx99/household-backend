@@ -14,6 +14,8 @@ doctrine:
       task_id: App\Household\Task\Infrastructure\Persistence\Doctrine\TaskIdType
       user_id: App\Household\Auth\Infrastructure\Persistence\Doctrine\UserIdType
       membership_id: App\Household\Membership\Infrastructure\Persistence\Doctrine\MembershipIdType
+      listing_id: App\Household\Listing\Infrastructure\Persistence\Doctrine\ListingIdType
+      list_item_id: App\Household\ListItem\Infrastructure\Persistence\Doctrine\ListItemIdType
 
   orm:
     auto_generate_proxy_classes: true
@@ -35,6 +37,16 @@ doctrine:
         type: xml
         dir: '%kernel.project_dir%/../../../src/Household/Membership/Infrastructure/Persistence/Doctrine'
         prefix: 'App\Household\Membership\Domain'
+      Listing:
+        is_bundle: false
+        type: xml
+        dir: '%kernel.project_dir%/../../../src/Household/Listing/Infrastructure/Persistence/Doctrine'
+        prefix: 'App\Household\Listing\Domain'
+      ListItem:
+        is_bundle: false
+        type: xml
+        dir: '%kernel.project_dir%/../../../src/Household/ListItem/Infrastructure/Persistence/Doctrine'
+        prefix: 'App\Household\ListItem\Domain'
 
 when@prod:
   doctrine:
